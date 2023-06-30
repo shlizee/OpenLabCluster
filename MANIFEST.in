@@ -1,0 +1,4 @@
+include requirements.txt
+include openlabcluster/gui/media/*.png
+include README.md
+recursive-include openlabcluster_example *

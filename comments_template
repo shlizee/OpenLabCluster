@@ -1,0 +1,80 @@
+OLC Header:
+
+"""
+OpenLabCluster: Active Learning Based Clustering and Classification 
+of Animal Behaviors in Videos Based on Automatically 
+Extracted Kinematic Body Keypoints
+© UW NeuroAI Lab
+https://github.com/shlizee/OpenLabCluster
+
+Please see AUTHORS for contributors
+https://github.com/shlizee/OpenLabCluster/blob/master/AUTHORS
+
+Please see RELATEDPROJ for Related Projects (third_party)
+https://github.com/shlizee/OpenLabCluster/blob/master/RELATEDPROJ
+
+Licensed under GNU Lesser General Public License v3.0
+"""
+
+
+
+OLC Function Comment:
+"""Purpose of the function
+Inputs:
+Outputs:
+Notes: <- specifiy here if some adaption from third_party, main components, dependencies, etc.
+"""
+
+
+
+DLC Header:
+
+"""
+This file is adapted from original file avaialble at https://github.com/DeepLabCut/DeepLabCut/XYZ
+Adaptions are specified within.
+"""
+
+"""
+DeepLabCut2.0 Toolbox (deeplabcut.org)
+© A. & M. Mathis Labs
+https://github.com/DeepLabCut/DeepLabCut
+Please see AUTHORS for contributors.
+https://github.com/DeepLabCut/DeepLabCut/blob/master/AUTHORS
+Licensed under GNU Lesser General Public License v3.0
+"""
+
+
+Projects to benchmark against:
+MoSeq -
+1. description: Use 3D images to capture the pose dynamics, behavioral modules, and associated transition probabilities.
+2. relation:
+Extract features from 3D video with PCA, learning an auto-regressive Hidden Markov Model (AR-HMM) parses behavior into sub-second motifs which naturally segment behaviors, which is different from OpenLabCluster.
+3. how to include in paper: cite the paper in the introduction.
+
+B-SOID, 
+1. description: 
+A platform for unsupervised behavioral segmentation and classification.
+2. relation: 
+B-SOID and OLC are both interested in behavioral classification. But classification procedures are completely different interns of 1) Model inputs 2) Sample annotation acquisition 3) Classifier. B-SOID use extracted features from keypoints location, e.g., length, speed, and angle, while OLC uses key points location directly. The classification label of B-SOID is obtained from HDBSCAN clustering assignments which are treated as the ground truth label. In our case, we use human annotation. BSOID applies Random Forest with clustering assigned label for classification, while we use Multi-layer perceptron with the ground truth label obtained from human annotators. 
+3. how to include in paper:
+In the paper, we evaluate the B-SOID performance with the ground truth label on our dataset with the different numbers of human-annotated labels to use. More specifically, samples are first preprocessed computing the length, speed, and angle, then the cluster assignments are obtained. We use the Hungarian bipartite matching algorithm to match the clustering assignment with the human-annotating label.
+
+ETH DLC-R analyzer
+1. description: Use skeletal representation extracted with DeepLabCut in classic behavioral tests and machine learning classifiers. The method shows similar or greater accuracy than commercial behavioral tracking systems and scores ethnologically relevant behaviors with similar accuracy to humans.
+2. relation: Both our methods and ETH DLC-R analyzer use the skeletal (body keypoints) representation to learn a machine learning classifier to recognize behaviors. But we are different in feature preprocess: ETH DLC-R preprocess features to extract velocity and distance and concatenated features across frames, while we use sequential model RNN to extract time series features. Though both OpenLabCluster and DeepLabCut use a fully connected model to learn the behavior classification task. But ETH DCL-R only considers the supervised learning scenario. But we use to consider the semi-supervised learning scenario aiming to achieve similar performance as the supervised learning approach but with fewer labeled samples.
+3. how to include it in the paper: Currently we can include this in the introduction as related work. We can include this in the performance table if needed. (If we want to include this in the table for comparison we can choose to compare it with the 100% labeled samples or a different range of labeled samples with or without active learning).
+
+VAME
+1. description: Identify the phenotypes and behavior motifs through latent embeddings of the VAE with keypoints data estimated with DeepLabCut
+2. relation: Both VAME and OpenLabCluter learns the latent representation of the time-series behavior data. But VAME focused on learning the motif of behavior which can be different from human annotation, while OpenLabCluster tries to predict human annotated behavior class with a few labeled samples.
+3. how to include in paper: We will use VAME as another model to learn the latent representation of behavior and check how the learned embedding can match human annotated behavior class with a few labeled samples.
+
+BENTO
+1. description: A general framework for pose estimation and behavior quantification.
+2. relation: Focuses on animal interaction. Designed a set of animal interaction features, then train a classifier with xgboost, hidden Markov model for best accuracy.
+3. how to include in paper: Not directly comparable. Better to cite in reference.
+
+TREBA:
+1. Description: Learning behavior representation with task programming.
+2. Relation: requires With raw input data, user can design which features are needed (velocity or distance angle). The model can compute those features based on user input. With the newly computed features, the TAVE model is trained to learn embeddings. With the learned embeddings downstream task like classification is performed. Where with those features only a small percentage of samples are needed for annotation.
+3.how to include in paper: mentions it as a way for behavior 

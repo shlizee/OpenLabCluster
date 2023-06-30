@@ -1,0 +1,24 @@
+name: openlabcluster-v2
+channels:
+  - anaconda-fusion
+  - defaults
+dependencies:
+  - pip=21.0.1=py37hecd8cb5_0
+  - python=3.7.11=h88f2d9e_0
+  - pip:
+    - deeplabcut
+    - easydict==1.9
+    - h5py==3.4.0
+    - matplotlib==3.1.3
+    - numpy>=1.16.4
+    - opencv-python==4.5.3.56
+    - ruamel-yaml==0.17.16
+    - ruamel-yaml-clib==0.2.6
+    - scikit-image==0.17.2
+    - scikit-learn==0.24.2
+    - scipy==1.5.4
+    - torch==1.8.0
+    - torchvision==0.9.0
+    - umap-learn==0.5.1
+    - wxpython==4.0.4
+prefix: /Users/Moishe/anaconda3/envs/opoenlabcluster-v2
