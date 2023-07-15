@@ -21,4 +21,4 @@ dependencies:
     - torchvision==0.9.0
     - umap-learn==0.5.1
     - wxpython==4.0.4
-prefix: /Users/Moishe/anaconda3/envs/opoenlabcluster-v2
+prefix: /Users/Moishe/anaconda3/envs/openlabcluster-v2
